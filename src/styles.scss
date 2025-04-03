@@ -19,7 +19,7 @@ p {
 button {
   padding: 0.75rem;
   background: #673ab7;
-  color: white;
+  color: fff;
   font-weight: bold;
   border: none;
   font-size: 1rem;
@@ -38,23 +38,21 @@ app-root {
   min-height: 100vh;
 }
 
-header {
-  background: #673ab7;
-  color: white;
+header, footer {
+  background: #bada55;
+  color: fff;
   font-size: 1.25rem;
   font-weight: bold;
   padding: 1.5rem;
+  text-align: center;
 }
 
 main {
   flex-grow: 1;
   margin-left: auto;
   margin-right: auto;
-}
-
-footer {
-  text-align: center;
-  margin-bottom: 2rem;
+  margin: 0% auto;
+  max-width: 100%;
 }
 
 .card-container {
