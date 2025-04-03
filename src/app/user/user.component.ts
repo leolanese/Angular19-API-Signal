@@ -22,7 +22,6 @@ import { UserCardComponent } from './user-card.component';
   `,
 })
 export class UserComponent {
-  // inject pattern instead of constructor
   private serviceApi = inject(ApiService);
    
   // Signals to support the template
