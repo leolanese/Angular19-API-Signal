@@ -1,4 +1,4 @@
-# Intro to Angular
+# Angular (19+) API request using pure reactive signal
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5.
 

@@ -1,0 +1,100 @@
+body {
+  margin: 0;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  padding: 0.75rem;
+  background: #673ab7;
+  color: white;
+  font-weight: bold;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+}
+
+header {
+  background: #673ab7;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 1.5rem;
+}
+
+main {
+  flex-grow: 1;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media only screen and (min-width: 740px) {
+    grid-template-columns: repeat(2, 21.5rem);
+  }
+
+  @media only screen and (min-width: 1100px) {
+    grid-template-columns: repeat(3, 21.5rem);
+  }
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+
+  > h3 {
+    margin: 0;
+  }
+
+  > img {
+    height: 6rem;
+    width: 6rem;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  &:hover {
+    background: #f0ecf9;
+    color: #673ab7;
+    border-color: #673ab7;
+  }
+}
