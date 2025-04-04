@@ -1,12 +1,13 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-user-card',
   template: `
-    <article class="card">
+    <article class="card" (click)="userSelected.emit(user())"  (click)="onCardClick()">
       <div class="card-content">
         <h3>{{ user().name }}</h3>
-        <p class="username">Username: {{ user().username }}</p>
+        <p class="username">{{ user().username }}</p>
         <p class="email">{{ user().email }}</p>
         <p class="address">{{ user().address.street }}, {{ user().address.city }}</p>
         <p class="company">{{ user().company.name }}</p>
@@ -17,23 +18,24 @@ import { Component, input } from '@angular/core';
     .card-content {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: .5rem;
     }
-    .username {
+    p {
       color: #666;
-      font-size: 0.9rem;
-    }
-    .email {
-      color: #673ab7;
-      font-size: 0.9rem;
-    }
-    .address, .company {
-      font-size: 0.9rem;
+      font-size: .9rem;
       color: #444;
     }
   `
 })
 export class UserCardComponent {
-  // @Input() user!: User;
-  readonly user = input.required<any>();
+  // Input signal that replace: @Input() user!: User;
+  readonly user = input<any>();
+  // Output signal that replace: @Output() userSelected = new EventEmitter<any>();
+  readonly userSelected = output<any>();
+
+  private readonly serviceApi = inject(ApiService);
+
+  onCardClick(): void {
+    this.serviceApi.setSelectedUser(this.user());
+  }
 }

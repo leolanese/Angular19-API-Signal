@@ -10,12 +10,15 @@ import { UserCardComponent } from './user-card.component';
     @if (isLoading()) {
       <p>Loading...</p>
     } @else if (isError()){
-        <div style='color: red'>An error occurred: {{ isError() | json }}</div>
+        <p>An error occurred: {{ isError() | json }}</p>
     } @else {
       @if (items().length) {
         <section class="card-container">
           @for (item of items(); track item) {
-            <app-user-card [user]="item" />
+            <app-user-card 
+              [user]="item" 
+              (userSelected)="onUserSelected($event)" 
+            />
           }
         </section>
       } @else {
@@ -23,9 +26,9 @@ import { UserCardComponent } from './user-card.component';
       }
    }
 
-  <pre>post: {{ post.value() | json }}</pre>
+  <!-- <pre>post: {{ post.value() | json }}</pre>
   <pre>user: {{ user.value() | json }}</pre>
-  <pre>comments: {{ comments.value() | json }}</pre>    
+  <pre>comments: {{ comments.value() | json }}</pre>     -->
   `,
 })
 export class UserComponent {
@@ -36,8 +39,11 @@ export class UserComponent {
   isLoading = this.serviceApi.isLoading;
   items = this.serviceApi.items;
 
-  post = this.serviceApi.post;
-  user = this.serviceApi.user;
-  comments = this.serviceApi.comments;
+  // post = this.serviceApi.post;
+  // user = this.serviceApi.user;
+  // comments = this.serviceApi.comments;
   
+  onUserSelected(user: any): void {
+    console.log('User selected in Parent Component:', user);
+  }
 }

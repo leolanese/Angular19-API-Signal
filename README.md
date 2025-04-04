@@ -1,4 +1,23 @@
-# Angular (19+) API request using pure reactive signal
+# Angular (19+) API request using pure reactive signal approach with Separation of Concern (SoC)
+
+## Child -> Parent + Child -> Service
+
+We can output to a service instead of a Parent component. This is useful for:
+- Communication between unrelated components
+- Centralising state management
+- Avoiding "prop drilling" through multiple component layers
+
+
+## SoC notes
+if user-card.compoennt access the service: it's no longer considered a pure presentational (dummy) component in the traditional separation of concerns pattern.  This isn't necessarily bad - Angular's dependency injection and signals make this pattern convenient, but it does change the component's classification.
+
+> For strict separation of concerns, you would keep services in container components and use input/output bindings for child components, even with signals.
+
+## Traditional separation:
+- Presentational components: Only handle UI rendering, receive data via inputs, emit events via outputs
+- Container components: Connect to services, manage state, and pass data down to presentational components
+
+---
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5.
 

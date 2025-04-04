@@ -5,12 +5,15 @@ import { computed, Injectable, signal } from '@angular/core';
 export class ApiService {
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com';
 
-  postId = signal(1);
-  post = httpResource<any>(() => `${this.baseUrl}/posts/${this.postId()}`)
-  user = httpResource<any>(() => `${this.baseUrl}/users/${this.post.value()?.userId}`)
-  comments = httpResource<any>(() => `${this.baseUrl}/comments?postId=${this.post.value()?.userId}`)
+  // Signal to store the selected user
+  private selectedUserSignal = signal<any>(null);
 
-  // Using httpResource()
+  // postId = signal(1);
+  // post = httpResource<any>(() => `${this.baseUrl}/posts/${this.postId()}`)
+  // user = httpResource<any>(() => `${this.baseUrl}/users/${this.post.value()?.userId}`)
+  // comments = httpResource<any>(() => `${this.baseUrl}/comments?postId=${this.post.value()?.userId}`)
+
+  // Using httpResource() with Parameters
   private itemsResource = httpResource<any>(() => ({
     url: `${this.baseUrl}/users`,
     method: 'GET',
@@ -24,5 +27,11 @@ export class ApiService {
   isLoading = this.itemsResource.isLoading;
   items = computed(() => this.itemsResource.value() ?? []);
   isError = computed(() => this.itemsResource.error() as HttpErrorResponse);
+
+    // Method to update the selected user
+  setSelectedUser(user: any): void {
+    this.selectedUserSignal.set(user);
+    console.log('User selected in service:', user);
+  }
 } 
 
