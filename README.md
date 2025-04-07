@@ -1,5 +1,7 @@
 # Angular (19+) API request using pure reactive signal approach with Separation of Concern (SoC)
 
+![](.//public/httpResource.png)
+
 ## Child -> Parent + Child -> Service
 
 We can output to a service instead of a Parent component. This is useful for:
@@ -16,6 +18,18 @@ if user-card.compoennt access the service: it's no longer considered a pure pres
 ## Traditional separation:
 - Presentational components: Only handle UI rendering, receive data via inputs, emit events via outputs
 - Container components: Connect to services, manage state, and pass data down to presentational components
+
+## Modern Angular 19+ approach
+This is the modern, dependency injection-based approach that:
+- Uses the new inject() function instead of constructor injection
+- Follows Angular's best practices for platform detection
+- Works seamlessly with Angular's SSR capabilities
+
+It's particularly useful when you need to:
+- Access browser-only APIs (like localStorage)
+- Perform server-specific operations
+- Debug SSR-related issues
+- Optimize code for different environments
 
 ---
 
