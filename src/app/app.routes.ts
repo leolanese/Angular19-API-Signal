@@ -6,5 +6,9 @@ export const routes: Routes = [
     // UserComponent isloaded lazily
     loadComponent: () => import('./user/user.component').then(m => m.UserComponent)
   },
-  {   path: '**', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'users',
+    loadComponent: () => import('./user/user.component').then(m => m.UserComponent)
+  },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ]; 

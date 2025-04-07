@@ -1,5 +1,5 @@
-import { JsonPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer, JsonPipe } from '@angular/common';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { ApiService } from './../api.service';
 import { UserCardComponent } from './user-card.component';
 
@@ -33,6 +33,7 @@ import { UserCardComponent } from './user-card.component';
 })
 export class UserComponent {
   private readonly serviceApi = inject(ApiService);
+  private readonly platformId = inject(PLATFORM_ID);
    
   // Signals to support the template
   isError = this.serviceApi.isError;
@@ -45,5 +46,15 @@ export class UserComponent {
   
   onUserSelected(user: any): void {
     console.log('User selected in Parent Component:', user);
+    console.log('isBrowser:', this.isBrowser());
+    console.log('isServer:', this.isServer());
+  }
+
+  isBrowser(): boolean {
+    return isPlatformBrowser(this.platformId);
+  }
+
+  isServer(): boolean {
+    return isPlatformServer(this.platformId);
   }
 }
